@@ -30,8 +30,8 @@ var confirmKill = false;
 var currentSpeaker = 0;
 var speakerDisplay = false;
 
-const pageWidth = window.innerWidth;
-const pageHeight = window.innerHeight;
+var fontSize = 20;
+var baseFontSize = fontSize;
 
 //Creating variables for each image
 var mainScreen = new Image();
@@ -278,12 +278,14 @@ var questionPosBase = questionPos;
 
 function scaleWithCanvas()
 {
+    //Get previous width and height before scaling
     canvasPrevWidth = canvas.width;
     canvasPrevHeight = canvas.height;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    //Scale button positions
     for (let i = 0; i < buttonPos.length; i++)
     {
         buttonPos[i].xStart = buttonPosBase[i].xStart * canvasWidthScale();
@@ -292,6 +294,7 @@ function scaleWithCanvas()
         buttonPos[i].yEnd = buttonPosBase[i].yEnd * canvasHeightScale();
     }
 
+    //Scale question/text positions
     for (let i = 0; i < questionPos.length; i++)
     {
         questionPos[i].xStart = questionPosBase[i].xStart * canvasWidthScale();
@@ -300,10 +303,18 @@ function scaleWithCanvas()
         questionPos[i].yEnd = questionPosBase[i].yEnd * canvasHeightScale();
     }
 
+    //Scale images
     for (let i = 0; i < imgDimensions.length; i++)
     {
         imgDimensions[i].width = imgBaseDimensions[i].width * canvasWidthScale();
         imgDimensions[i].height = imgBaseDimensions[i].height * canvasHeightScale();
+    }
+
+    //Scale font size based on which scale is smaller (width or height)
+    fontSize = Math.round(baseFontSize * canvasWidthScale());
+    if (Math.round(baseFontSize * canvasHeightScale() < fontSize))
+    {
+        fontSize = Math.round(baseFontSize * canvasHeightScale());
     }
 }
 

@@ -29,7 +29,7 @@ function redraw()
     else if (convoState == 10 && gameState == 2)
     {
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(firstConvo[convoState], questionPos[2].xStart, questionPos[2].yStart);
         context.fillText("1. I'm ready.", questionPos[3].xStart, questionPos[3].yStart);
@@ -45,7 +45,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/wakeuproom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New"
+        context.font = fontSize + "px Courier New";
         context.fillText(firstConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
@@ -55,7 +55,7 @@ function redraw()
         mainScreen.src = "Images/Main Screens/bedroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
         context.drawImage(restartButton, buttonPos[0].xStart, buttonPos[0].yStart, imgDimensions[2].width, imgDimensions[2].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText("You awaken in your bed, gasping for air as if you'd just had a nightmare. What you experienced felt so real and yet...", questionPos[1].xStart, questionPos[1].yStart);
         context.fillText("You're in your bed at home. It must have just been a dream. It must have.", questionPos[12].xStart, questionPos[12].yStart);
@@ -66,7 +66,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/room1.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(secondConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -76,7 +76,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/room2.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(thirdConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -86,7 +86,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/room3.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(fourthConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -96,7 +96,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding1[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -106,7 +106,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding1[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -116,7 +116,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding2[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -126,7 +126,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding2[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -136,7 +136,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding3[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -146,7 +146,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
         context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart, imgDimensions[4].width, imgDimensions[4].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(convoEnding3[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
@@ -162,7 +162,7 @@ function redraw()
     //Questions
      while (questionState === true)
     {
-        context.font = "20px Courier New";
+         context.font = fontSize + "px Courier New";
          context.fillStyle = "#ffffff";
          context.fillText(questions[((questionSet * 6) - 6)], questionPos[3].xStart, questionPos[3].yStart);
          context.fillText(questions[((questionSet * 6) - 5)], questionPos[4].xStart, questionPos[4].yStart);
@@ -196,7 +196,7 @@ function redraw()
     //Display answer
     while (showAnswer === true)
     {
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(answers[answerNum].answer, questionPos[3].xStart, questionPos[3].yStart);
         break;
@@ -205,7 +205,7 @@ function redraw()
     //Display fate choice
     while (fateChoice === true)
     {
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText("You've asked three questions, you must now make a decision.", questionPos[10].xStart, questionPos[10].yStart);
         context.drawImage(killButton, buttonPos[10].xStart, buttonPos[10].yStart, imgDimensions[6].width, imgDimensions[6].height);
@@ -216,7 +216,7 @@ function redraw()
     //Display second chance question
     while (secondChance === true)
     {
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText("Are you sure?", questionPos[11].xStart, questionPos[11].yStart);
         context.drawImage(yesButton, buttonPos[10].xStart, buttonPos[10].yStart, imgDimensions[7].width, imgDimensions[7].height);
@@ -355,7 +355,7 @@ function redraw()
     while (speakerDisplay === true && questionState === false && showAnswer === false)
     {
         context.drawImage(charPortrait[currentSpeaker], buttonPos[12].xStart, buttonPos[12].yStart, imgDimensions[8].width, imgDimensions[8].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(speakerTag[currentSpeaker], questionPos[9].xStart, questionPos[9].yStart);
         break;
@@ -365,7 +365,7 @@ function redraw()
     while (speakerDisplay === true && questionState === false && showAnswer === true)
     {
         context.drawImage(charPortrait[questionsAsked - 1], buttonPos[12].xStart, buttonPos[12].yStart, imgDimensions[8].width, imgDimensions[8].height);
-        context.font = "20px Courier New";
+        context.font = fontSize + "px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText(speakerTag[questionsAsked - 1], questionPos[9].xStart, questionPos[9].yStart);
         break;
