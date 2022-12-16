@@ -6,15 +6,11 @@ canvas.height = 900;
 canvas.style.display = 'block';
 canvas.style.marginLeft = "auto";
 canvas.style.marginRight = "auto";
-canvas.style.border = "3px solid black";
 var canvasPrevWidth = canvas.width;
 var canvasPrevHeight = canvas.height;
 
 var canvasCenterX = canvas.width / 2;
 var canvasCenterY = canvas.height / 2;
-
-var menuButtonWidth = 300;
-var menuButtonHeight = 100;
 
 //Variable for tracking multiple state of the game
 //Full description of each variable is available above function clickEvent in the clickListeners script
@@ -62,6 +58,20 @@ var button3 = new Image();
 var button4 = new Image();
 var button5 = new Image();
 var button6 = new Image();
+
+var imgDimensions = Object.freeze([
+    { /* 0 - Main Screen */ "width": 1600, "height": 900 },
+    { /* 1 - Back Button */ "width": 300, "height": 100 },
+    { /* 2 - Menu Button */ "width": 300, "height": 100 },
+    { /* 3 - Arrow Button */ "width": 100, "height": 100 },
+    { /* 4 - Transparent Header */ "width": 1600, "height": 200 },
+    { /* 5 - Transparent Box */ "width": 75, "height": 75 },
+    { /* 6 - Kill/Spare Button */ "width": 225, "height": 75 },
+    { /* 7 - Yes/No Button */ "width": 225, "height": 75 },
+    { /* 8 - Portrait */ "width": 315, "height": 180 },
+    { /* 9 - Numbered Button */ "width": 75, "height": 75 }]);
+
+var imgBaseDimensions = imgDimensions;
 
 //Defining the source for each image
 mainScreen.src = "Images/Main Screens/title-screen.png";
@@ -232,22 +242,22 @@ function canvasHeightScale()
 //Object array for button position variables
 // 0 = Start Button & Restart Button, 1 = Credits Button, 2 = Back Button, 3 = Forward Arrow, 4-9 = Numbered box buttons, 10-11 = Kill and Spare buttons, 12 = Speaker portrait
 var buttonPos = Object.freeze([
-    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 500, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 500 + menuButtonHeight },
-    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 700, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 700 + menuButtonHeight },
-    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 700, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 700 + menuButtonHeight },
+    { "xStart": canvasCenterX - (imgDimensions[2].width / 2), "yStart": 500, "xEnd": canvasCenterX + (imgDimensions[2].width / 2), "yEnd": 500 + imgDimensions[2].height },
+    { "xStart": canvasCenterX - (imgDimensions[2].width / 2), "yStart": 700, "xEnd": canvasCenterX + (imgDimensions[2].width / 2), "yEnd": 700 + imgDimensions[2].height },
+    { "xStart": canvasCenterX - (imgDimensions[2].width / 2), "yStart": 700, "xEnd": canvasCenterX + (imgDimensions[2].width / 2), "yEnd": 700 + imgDimensions[2].height },
     { "xStart": 1450, "yStart": 750, "xEnd": 1718, "yEnd": 860 },
-    { "xStart": 1300, "yStart": 715, "xEnd": 1543, "yEnd": 805 },
-    { "xStart": 1400, "yStart": 715, "xEnd": 1643, "yEnd": 805 },
-    { "xStart": 1500, "yStart": 715, "xEnd": 1743, "yEnd": 805 },
-    { "xStart": 1300, "yStart": 815, "xEnd": 1543, "yEnd": 905 },
-    { "xStart": 1400, "yStart": 815, "xEnd": 1643, "yEnd": 905 },
-    { "xStart": 1500, "yStart": 815, "xEnd": 1743, "yEnd": 905 },
+    { "xStart": 1300, "yStart": 715, "xEnd": 1375, "yEnd": 790 },
+    { "xStart": 1400, "yStart": 715, "xEnd": 1475, "yEnd": 790 },
+    { "xStart": 1500, "yStart": 715, "xEnd": 1575, "yEnd": 790 },
+    { "xStart": 1300, "yStart": 815, "xEnd": 1375, "yEnd": 890 },
+    { "xStart": 1400, "yStart": 815, "xEnd": 1475, "yEnd": 890 },
+    { "xStart": 1500, "yStart": 815, "xEnd": 1575, "yEnd": 890 },
     { "xStart": 400, "yStart": 775, "xEnd": 790, "yEnd": 860 },
     { "xStart": 900, "yStart": 775, "xEnd": 1290, "yEnd": 860 },
     { "xStart": 25, "yStart": 500, "xEnd": 340, "yEnd": 680 }]);
 
 //Object array for question positions
-// 0 = Transparent backing, 1 & 2 = Convo positions, 3 - 8 = Question positions, 9 = Speaker Tag, 10 = Decision request, 11 = Confirm Choice
+// 0 = Transparent backing, 1 & 2 = Convo positions, 3 - 8 = Question positions, 9 = Speaker Tag, 10 = Decision request, 11 = Confirm Choice, 12 = End Line
 var questionPos = Object.freeze([
     { "xStart": 0, "yStart": 700 },
     { "xStart": 20, "yStart": 725 },
@@ -260,7 +270,8 @@ var questionPos = Object.freeze([
     { "xStart": 420, "yStart": 840 },
     { "xStart": 225, "yStart": 665 },
     { "xStart": 410, "yStart": 750 },
-    { "xStart": 700, "yStart": 750 }],);
+    { "xStart": 700, "yStart": 750 },
+    { "xStart": 20, "yStart": 750 }],);
 
 var buttonPosBase = buttonPos;
 var questionPosBase = questionPos;
@@ -287,6 +298,12 @@ function scaleWithCanvas()
         questionPos[i].xEnd = questionPosBase[i].xEnd * canvasWidthScale();
         questionPos[i].yStart = questionPosBase[i].yStart * canvasHeightScale();
         questionPos[i].yEnd = questionPosBase[i].yEnd * canvasHeightScale();
+    }
+
+    for (let i = 0; i < imgDimensions.length; i++)
+    {
+        imgDimensions[i].width = imgBaseDimensions[i].width * canvasWidthScale();
+        imgDimensions[i].height = imgBaseDimensions[i].height * canvasHeightScale();
     }
 }
 
