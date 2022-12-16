@@ -8,7 +8,7 @@ function redraw()
     context.setTransform(1, 0, 0, 1, 0, 0);
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.restore();
-    context.drawImage(mainScreen, 0, 0, 1600, 900);
+    context.drawImage(mainScreen, 0, 0, canvas.width, canvas.height);
 
     //Menu Screen
     if (gameState == 0)
@@ -28,13 +28,13 @@ function redraw()
     //Wake Up Room, First Dialogue Choice
     else if (convoState == 10 && gameState == 2)
     {
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(firstConvo[convoState], 20, 735);
-        context.fillText("1. I'm ready.", 20, 770);
-        context.fillText("2. I'll do whatever you say!", 20, 805);
-        context.fillText("3. I'm not doing your dirty work!", 20, 840);
+        context.fillText(firstConvo[convoState], questionPos[2].xStart, questionPos[2].yStart);
+        context.fillText("1. I'm ready.", questionPos[3].xStart, questionPos[3].yStart);
+        context.fillText("2. I'll do whatever you say!", questionPos[4].xStart, questionPos[4].yStart);
+        context.fillText("3. I'm not doing your dirty work!", questionPos[5].xStart, questionPos[5].yStart);
         context.drawImage(button1, buttonPos[4].xStart, buttonPos[4].yStart, 75, 75);
         context.drawImage(button2, buttonPos[5].xStart, buttonPos[5].yStart, 75, 75);
         context.drawImage(button3, buttonPos[6].xStart, buttonPos[6].yStart, 75, 75);
@@ -44,16 +44,16 @@ function redraw()
     else if (gameState == 2)
     {
         mainScreen.src = "Images/Main Screens/wakeuproom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New"
-        context.fillText(firstConvo[convoState], 20, 725);
+        context.fillText(firstConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Game Over Screen
     else if (gameState == 3)
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.drawImage(restartButton, buttonPos[0].xStart, buttonPos[0].yStart, menuButtonWidth, menuButtonHeight);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
@@ -65,90 +65,90 @@ function redraw()
     else if (gameState == 4)
     {
         mainScreen.src = "Images/Main Screens/room1.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(secondConvo[convoState], 20, 725);
+        context.fillText(secondConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Room 2
     else if (gameState == 5)
     {
         mainScreen.src = "Images/Main Screens/room2.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(thirdConvo[convoState], 20, 725);
+        context.fillText(thirdConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Room 3
     else if (gameState == 6)
     {
         mainScreen.src = "Images/Main Screens/room3.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(fourthConvo[convoState], 20, 725);
+        context.fillText(fourthConvo[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 1 'Bedroom' Screen
     else if (gameState == 7 && convoState >= 3)
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding1[convoState], 20, 725);
+        context.fillText(convoEnding1[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 1
     else if (gameState == 7)
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding1[convoState], 20, 725);
+        context.fillText(convoEnding1[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 2 'Bedroom' Screen
     else if (gameState == 8 && convoState >= 4)
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding2[convoState], 20, 725);
+        context.fillText(convoEnding2[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 2
     else if (gameState == 8)
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding2[convoState], 20, 725);
+        context.fillText(convoEnding2[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 3 'Bedroom' Screen
     else if (gameState == 9 && convoState >= 4)
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding3[convoState], 20, 725);
+        context.fillText(convoEnding3[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //Ending 3
     else if (gameState == 9)
     {
         mainScreen.src = "Images/Main Screens/finalroom.png";
-        context.drawImage(transHeader, 0, 700);
+        context.drawImage(transHeader, questionPos[0].xStart, questionPos[0].yStart);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(convoEnding3[convoState], 20, 725);
+        context.fillText(convoEnding3[convoState], questionPos[1].xStart, questionPos[1].yStart);
     }
 
     //End Screen
@@ -163,13 +163,13 @@ function redraw()
      while (questionState === true)
     {
         context.font = "20px Courier New";
-        context.fillStyle = "#ffffff";
-        context.fillText(questions[((questionSet * 6) - 6)], 20, 770);
-        context.fillText(questions[((questionSet * 6) - 5)], 20, 805);
-        context.fillText(questions[((questionSet * 6) - 4)], 20, 840);
-        context.fillText(questions[((questionSet * 6) - 3)], 420, 770);
-        context.fillText(questions[((questionSet * 6) - 2)], 420, 805);
-        context.fillText(questions[((questionSet * 6) - 1)], 420, 840);
+         context.fillStyle = "#ffffff";
+         context.fillText(questions[((questionSet * 6) - 6)], questionPos[3].xStart, questionPos[3].yStart);
+         context.fillText(questions[((questionSet * 6) - 5)], questionPos[4].xStart, questionPos[4].yStart);
+         context.fillText(questions[((questionSet * 6) - 4)], questionPos[5].xStart, questionPos[5].yStart);
+         context.fillText(questions[((questionSet * 6) - 3)], questionPos[6].xStart, questionPos[6].yStart);
+         context.fillText(questions[((questionSet * 6) - 2)], questionPos[7].xStart, questionPos[7].yStart);
+         context.fillText(questions[((questionSet * 6) - 1)], questionPos[8].xStart, questionPos[8].yStart);
         context.drawImage(button1, buttonPos[4].xStart, buttonPos[4].yStart, 75, 75);
         context.drawImage(button2, buttonPos[5].xStart, buttonPos[5].yStart, 75, 75);
         context.drawImage(button3, buttonPos[6].xStart, buttonPos[6].yStart, 75, 75);
@@ -198,7 +198,7 @@ function redraw()
     {
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(answers[answerNum].answer, 20, 770);
+        context.fillText(answers[answerNum].answer, questionPos[3].xStart, questionPos[3].yStart);
         break;
     }
 
@@ -207,7 +207,7 @@ function redraw()
     {
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText("You've asked three questions, you must now make a decision.", 410, 750);
+        context.fillText("You've asked three questions, you must now make a decision.", questionPos[10].xStart, questionPos[10].yStart);
         context.drawImage(killButton, buttonPos[10].xStart, buttonPos[10].yStart, 225, 75);
         context.drawImage(spareButton, buttonPos[11].xStart, buttonPos[11].yStart, 225, 75);
         break;
@@ -218,7 +218,7 @@ function redraw()
     {
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText("Are you sure?", 700, 750);
+        context.fillText("Are you sure?", questionPos[11].xStart, questionPos[11].yStart);
         context.drawImage(yesButton, buttonPos[10].xStart, buttonPos[10].yStart, 225, 75);
         context.drawImage(noButton, buttonPos[11].xStart, buttonPos[11].yStart, 225, 75);
         break;
@@ -354,20 +354,20 @@ function redraw()
     //Displays name and portrait for the character speaking outside of the question state
     while (speakerDisplay === true && questionState === false && showAnswer === false)
     {
-        context.drawImage(charPortrait[currentSpeaker], 25, 500, 315, 180);
+        context.drawImage(charPortrait[currentSpeaker], buttonPos[12].xStart, buttonPos[12].yStart, 315, 180);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(speakerTag[currentSpeaker], 225, 665);
+        context.fillText(speakerTag[currentSpeaker], questionPos[9].xStart, questionPos[9].yStart);
         break;
     }
 
     //Displays name and portrait for the character speaking during the question state
     while (speakerDisplay === true && questionState === false && showAnswer === true)
     {
-        context.drawImage(charPortrait[questionsAsked - 1], 25, 500, 315, 180);
+        context.drawImage(charPortrait[questionsAsked - 1], buttonPos[12].xStart, buttonPos[12].yStart, 315, 180);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
-        context.fillText(speakerTag[questionsAsked - 1], 225, 665);
+        context.fillText(speakerTag[questionsAsked - 1], questionPos[9].xStart, questionPos[9].yStart);
         break;
     }
 }

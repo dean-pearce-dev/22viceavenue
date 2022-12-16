@@ -89,12 +89,8 @@ function resetGame()
 //speakerDisplay is to determine whether or not the speaker picture and text should appear
 function clickEvent()
 {
-    //var mouseX = event.pageX;
     var mouseX = findXPointOnCanvas(event.clientX);
-    //var mouseY = event.pageY;
     var mouseY = findYPointOnCanvas(event.clientY);
-    console.log("Mouse X: " + mouseX);
-    console.log("Mouse Y: " + mouseY);
 
     //Start button
     if (gameState == 0 && mouseX >= buttonPos[0].xStart && mouseX <= buttonPos[0].xEnd && mouseY >= buttonPos[0].yStart && mouseY <= buttonPos[0].yEnd) 

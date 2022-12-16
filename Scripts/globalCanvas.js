@@ -7,6 +7,8 @@ canvas.style.display = 'block';
 canvas.style.marginLeft = "auto";
 canvas.style.marginRight = "auto";
 canvas.style.border = "3px solid black";
+var canvasPrevWidth = canvas.width;
+var canvasPrevHeight = canvas.height;
 
 var canvasCenterX = canvas.width / 2;
 var canvasCenterY = canvas.height / 2;
@@ -218,8 +220,17 @@ function findYPointOnCanvas(mouseY)
     return mouseY - canvas.getBoundingClientRect().top;
 }
 
+function canvasWidthScale()
+{
+    return canvas.width / canvasPrevWidth;
+}
+function canvasHeightScale()
+{
+    return canvas.height / canvasPrevHeight;
+}
+
 //Object array for button position variables
-// 0 = Start Button & Restart Button, 1 = Credits Button, 2 = Back Button, 3 = Forward Arrow, 4-9 = Numbered box buttons, 10-11 = Kill and Spare buttons
+// 0 = Start Button & Restart Button, 1 = Credits Button, 2 = Back Button, 3 = Forward Arrow, 4-9 = Numbered box buttons, 10-11 = Kill and Spare buttons, 12 = Speaker portrait
 var buttonPos = Object.freeze([
     { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 500, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 500 + menuButtonHeight },
     { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 700, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 700 + menuButtonHeight },
@@ -232,4 +243,56 @@ var buttonPos = Object.freeze([
     { "xStart": 1400, "yStart": 815, "xEnd": 1643, "yEnd": 905 },
     { "xStart": 1500, "yStart": 815, "xEnd": 1743, "yEnd": 905 },
     { "xStart": 400, "yStart": 775, "xEnd": 790, "yEnd": 860 },
-    { "xStart": 900, "yStart": 775, "xEnd": 1290, "yEnd": 860 }]);
+    { "xStart": 900, "yStart": 775, "xEnd": 1290, "yEnd": 860 },
+    { "xStart": 25, "yStart": 500, "xEnd": 340, "yEnd": 680 }]);
+
+//Object array for question positions
+// 0 = Transparent backing, 1 & 2 = Convo positions, 3 - 8 = Question positions, 9 = Speaker Tag, 10 = Decision request, 11 = Confirm Choice
+var questionPos = Object.freeze([
+    { "xStart": 0, "yStart": 700 },
+    { "xStart": 20, "yStart": 725 },
+    { "xStart": 20, "yStart": 735 },
+    { "xStart": 20, "yStart": 770 },
+    { "xStart": 20, "yStart": 805 },
+    { "xStart": 20, "yStart": 840 },
+    { "xStart": 420, "yStart": 770 },
+    { "xStart": 420, "yStart": 805 },
+    { "xStart": 420, "yStart": 840 },
+    { "xStart": 225, "yStart": 665 },
+    { "xStart": 410, "yStart": 750 },
+    { "xStart": 700, "yStart": 750 }],);
+
+var buttonPosBase = buttonPos;
+var questionPosBase = questionPos;
+
+function scaleWithCanvas()
+{
+    canvasPrevWidth = canvas.width;
+    canvasPrevHeight = canvas.height;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    for (let i = 0; i < buttonPos.length; i++)
+    {
+        buttonPos[i].xStart = buttonPosBase[i].xStart * canvasWidthScale();
+        buttonPos[i].xEnd = buttonPosBase[i].xEnd * canvasWidthScale();
+        buttonPos[i].yStart = buttonPosBase[i].yStart * canvasHeightScale();
+        buttonPos[i].yEnd = buttonPosBase[i].yEnd * canvasHeightScale();
+    }
+
+    for (let i = 0; i < questionPos.length; i++)
+    {
+        questionPos[i].xStart = questionPosBase[i].xStart * canvasWidthScale();
+        questionPos[i].xEnd = questionPosBase[i].xEnd * canvasWidthScale();
+        questionPos[i].yStart = questionPosBase[i].yStart * canvasHeightScale();
+        questionPos[i].yEnd = questionPosBase[i].yEnd * canvasHeightScale();
+    }
+}
+
+scaleWithCanvas();
+
+window.addEventListener("resize", function ()
+{
+    scaleWithCanvas();
+})
