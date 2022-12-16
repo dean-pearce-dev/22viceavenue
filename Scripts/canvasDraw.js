@@ -14,15 +14,15 @@ function redraw()
     if (gameState == 0)
     {
         mainScreen.src = "Images/Main Screens/title-screen.png";
-        context.drawImage(startButton, buttonPos[0].xStart, buttonPos[0].yStart, 300, 100);
-        context.drawImage(creditsButton, buttonPos[1].xStart, buttonPos[1].yStart, 300, 100);
+        context.drawImage(startButton, buttonPos[0].xStart, buttonPos[0].yStart, menuButtonWidth, menuButtonHeight);
+        context.drawImage(creditsButton, buttonPos[1].xStart, buttonPos[1].yStart, menuButtonWidth, menuButtonHeight);
     }
 
     //Credits Screen
     else if (gameState == 1)
     {
         mainScreen.src = "Images/Main Screens/credits.png";
-        context.drawImage(backButton, buttonPos[2].xStart, buttonPos[2].yStart, 300, 100);
+        context.drawImage(backButton, buttonPos[2].xStart, buttonPos[2].yStart, menuButtonWidth, menuButtonHeight);
     }
 
     //Wake Up Room, First Dialogue Choice
@@ -54,7 +54,7 @@ function redraw()
     {
         mainScreen.src = "Images/Main Screens/bedroom.png";
         context.drawImage(transHeader, 0, 700);
-        context.drawImage(restartButton, buttonPos[0].xStart, buttonPos[0].yStart, 300, 100);
+        context.drawImage(restartButton, buttonPos[0].xStart, buttonPos[0].yStart, menuButtonWidth, menuButtonHeight);
         context.font = "20px Courier New";
         context.fillStyle = "#ffffff";
         context.fillText("You awaken in your bed, gasping for air as if you'd just had a nightmare. What you experienced felt so real and yet...", 20, 725);
@@ -155,8 +155,8 @@ function redraw()
     else if (gameState == 10)
     {
         mainScreen.src = "Images/Main Screens/endscreen.png";
-        context.drawImage(menuButton, buttonPos[0].xStart, buttonPos[0].yStart, 300, 100);
-        context.drawImage(playAgainButton, buttonPos[1].xStart, buttonPos[1].yStart, 300, 100);
+        context.drawImage(menuButton, buttonPos[0].xStart, buttonPos[0].yStart, menuButtonWidth, menuButtonHeight);
+        context.drawImage(playAgainButton, buttonPos[1].xStart, buttonPos[1].yStart, menuButtonWidth, menuButtonHeight);
     }
 
     //Questions

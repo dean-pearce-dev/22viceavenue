@@ -67,24 +67,11 @@ function resetGame()
     killTracker = 0;
     confirmKill = false;
     currentSpeaker = 0;
-    answers[0].asked = "false";
-    answers[1].asked = "false";
-    answers[2].asked = "false";
-    answers[3].asked = "false";
-    answers[4].asked = "false";
-    answers[5].asked = "false";
-    answers[6].asked = "false";
-    answers[7].asked = "false";
-    answers[8].asked = "false";
-    answers[9].asked = "false";
-    answers[10].asked = "false";
-    answers[11].asked = "false";
-    answers[12].asked = "false";
-    answers[13].asked = "false";
-    answers[14].asked = "false";
-    answers[15].asked = "false";
-    answers[16].asked = "false";
-    answers[17].asked = "false";
+
+    for (let i = 0; i < answers.length; i++)
+    {
+        answers[i].asked = "false";
+    }
 }
 
 //Gets the X and Y position of the mouse, if else statements are to check the various conditions, then makes the necessary changes on click
@@ -102,13 +89,15 @@ function resetGame()
 //speakerDisplay is to determine whether or not the speaker picture and text should appear
 function clickEvent()
 {
-    var mouseX = event.pageX;
-    var mouseY = event.pageY;
+    //var mouseX = event.pageX;
+    var mouseX = findXPointOnCanvas(event.clientX);
+    //var mouseY = event.pageY;
+    var mouseY = findYPointOnCanvas(event.clientY);
     console.log("Mouse X: " + mouseX);
     console.log("Mouse Y: " + mouseY);
 
     //Start button
-    if (gameState == 0 && mouseX >= buttonPos[0].xClickStart && mouseX <= buttonPos[0].xClickEnd && mouseY >= buttonPos[0].yClickStart && mouseY <= buttonPos[0].yClickEnd) 
+    if (gameState == 0 && mouseX >= buttonPos[0].xStart && mouseX <= buttonPos[0].xEnd && mouseY >= buttonPos[0].yStart && mouseY <= buttonPos[0].yEnd) 
     {
         gameState = 2;
         fwArrowVis = true;
@@ -116,7 +105,7 @@ function clickEvent()
     }
 
     //Menu button at the end of the game
-    if (gameState == 10 && mouseX >= buttonPos[0].xClickStart && mouseX <= buttonPos[0].xClickEnd && mouseY >= buttonPos[0].yClickStart && mouseY <= buttonPos[0].yClickEnd) 
+    if (gameState == 10 && mouseX >= buttonPos[0].xStart && mouseX <= buttonPos[0].xEnd && mouseY >= buttonPos[0].yStart && mouseY <= buttonPos[0].yEnd) 
     {
         gameState = 0;
         fwArrowVis = false;
@@ -124,7 +113,7 @@ function clickEvent()
     }
 
     //Play Again button at the end of the game, loads into the first room, and resets all the game states
-    else if (gameState == 10 && mouseX >= buttonPos[1].xClickStart && mouseX <= buttonPos[1].xClickEnd && mouseY >= buttonPos[1].yClickStart && mouseY <= buttonPos[1].yClickEnd) 
+    else if (gameState == 10 && mouseX >= buttonPos[1].xStart && mouseX <= buttonPos[1].xEnd && mouseY >= buttonPos[1].yStart && mouseY <= buttonPos[1].yEnd) 
     {
         gameState = 2;
         speakerDisplayCheck();
@@ -133,19 +122,19 @@ function clickEvent()
     }
 
     //Credits Button
-    else if (gameState == 0 && mouseX >= buttonPos[1].xClickStart && mouseX <= buttonPos[1].xClickEnd && mouseY >= buttonPos[1].yClickStart && mouseY <= buttonPos[1].yClickEnd) 
+    else if (gameState == 0 && mouseX >= buttonPos[1].xStart && mouseX <= buttonPos[1].xEnd && mouseY >= buttonPos[1].yStart && mouseY <= buttonPos[1].yEnd) 
     {
         gameState = 1;
     }
 
     //Back button on credits screen
-    else if (gameState == 1 && mouseX >= buttonPos[2].xClickStart && mouseX <= buttonPos[2].xClickEnd && mouseY >= buttonPos[2].yClickStart && mouseY <= buttonPos[2].yClickEnd) 
+    else if (gameState == 1 && mouseX >= buttonPos[2].xStart && mouseX <= buttonPos[2].xEnd && mouseY >= buttonPos[2].yStart && mouseY <= buttonPos[2].yEnd) 
     {
         gameState = 0;
     }
 
     //Arrow to first dialogue choice in wake up room
-    else if (convoState == 9 && gameState == 2 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd) 
+    else if (convoState == 9 && gameState == 2 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd) 
     {
         convoState++
         loopSpeaker();
@@ -153,7 +142,7 @@ function clickEvent()
     }
 
     //Number 1 button in wake up room
-    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[4].xClickStart && mouseX <= buttonPos[4].xClickEnd && mouseY >= buttonPos[4].yClickStart && mouseY <= buttonPos[4].yClickEnd) 
+    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[4].xStart && mouseX <= buttonPos[4].xEnd && mouseY >= buttonPos[4].yStart && mouseY <= buttonPos[4].yEnd) 
     {
         loopSpeaker();
         convoState = 13;
@@ -161,7 +150,7 @@ function clickEvent()
     }
 
     //Number 2 button in wake up room
-    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[5].xClickStart && mouseX <= buttonPos[5].xClickEnd && mouseY >= buttonPos[5].yClickStart && mouseY <= buttonPos[5].yClickEnd) 
+    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[5].xStart && mouseX <= buttonPos[5].xEnd && mouseY >= buttonPos[5].yStart && mouseY <= buttonPos[5].yEnd) 
     {
         loopSpeaker();
         convoState = 14;
@@ -169,7 +158,7 @@ function clickEvent()
     }
 
     //Number 3 button in wake up room
-    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[6].xClickStart && mouseX <= buttonPos[6].xClickEnd && mouseY >= buttonPos[6].yClickStart && mouseY <= buttonPos[6].yClickEnd) 
+    else if (convoState == 10 && gameState == 2 && mouseX >= buttonPos[6].xStart && mouseX <= buttonPos[6].xEnd && mouseY >= buttonPos[6].yStart && mouseY <= buttonPos[6].yEnd) 
     {
         loopSpeaker();
         convoState = 11;
@@ -177,7 +166,7 @@ function clickEvent()
     }
 
     //Arrow button to play the game over state after dialogue option 3 in wake up room
-    else if (convoState == 12 && gameState == 2 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 12 && gameState == 2 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         gameState = 3;
         fwArrowVis = false;
@@ -185,7 +174,7 @@ function clickEvent()
     }
 
     //Restart button on game over screen
-    else if (gameState == 3 && mouseX >= buttonPos[0].xClickStart && mouseX <= buttonPos[0].xClickEnd && mouseY >= buttonPos[0].yClickStart && mouseY <= buttonPos[0].yClickEnd)
+    else if (gameState == 3 && mouseX >= buttonPos[0].xStart && mouseX <= buttonPos[0].xEnd && mouseY >= buttonPos[0].yStart && mouseY <= buttonPos[0].yEnd)
     {
         gameState = 0;
         fwArrowVis = false;
@@ -194,7 +183,7 @@ function clickEvent()
     }
 
     //Arrow button after dialogue options 1 & 2
-    else if (convoState > 12 && gameState == 2 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState > 12 && gameState == 2 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         loopSpeaker();
         gameState = 4;
@@ -202,7 +191,7 @@ function clickEvent()
     }
 
     //Arrow button to move to room 2
-    else if (convoState == 6 && gameState == 4 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 6 && gameState == 4 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplayCheck();
         loopSpeaker();
@@ -211,7 +200,7 @@ function clickEvent()
     }
 
     //Arrow button to move to room 3
-    else if (convoState == 4 && gameState == 5 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 4 && gameState == 5 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplayCheck();
         loopSpeaker();
@@ -220,7 +209,7 @@ function clickEvent()
     }
 
     //Arrow button to ending 1 in room 3
-    else if (killTracker == 3 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (killTracker == 3 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplayCheck();
         loopSpeaker();
@@ -229,7 +218,7 @@ function clickEvent()
     }
 
     //Arrow button to ending 2 in room 3
-    else if (killTracker < 3 && killTracker > 0 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (killTracker < 3 && killTracker > 0 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplayCheck();
         loopSpeaker();
@@ -238,7 +227,7 @@ function clickEvent()
     }
 
     //Arrow button to ending 3 in room 3
-    else if (killTracker == 0 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (killTracker == 0 && convoState == 5 && gameState == 6 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplayCheck();
         loopSpeaker();
@@ -247,7 +236,7 @@ function clickEvent()
     }
 
     //Arrow button to end screen from ending 1
-    else if (convoState == 6 && gameState == 7 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 6 && gameState == 7 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplay = false;
         gameState = 10;
@@ -256,7 +245,7 @@ function clickEvent()
     }
 
     //Arrow button to end screen from ending 2
-    else if (convoState == 7 && gameState == 8 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 7 && gameState == 8 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplay = false;
         gameState = 10;
@@ -265,7 +254,7 @@ function clickEvent()
     }
 
     //Arrow button to end screen from ending 3
-    else if (convoState == 6 && gameState == 9 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 6 && gameState == 9 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplay = false;
         gameState = 10;
@@ -274,7 +263,7 @@ function clickEvent()
     }
 
     //Arrow button to questions in room 3
-    else if (convoState == 1 && gameState == 6 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 1 && gameState == 6 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         convoState++;
         questionState = true;
@@ -283,7 +272,7 @@ function clickEvent()
     }
 
     //Arrow button to questions in room 2
-    else if (convoState == 1 && gameState == 5 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (convoState == 1 && gameState == 5 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         convoState++;
         questionState = true;
@@ -292,7 +281,7 @@ function clickEvent()
     }
 
     //Arrow button to questions in room 1
-    else if (fateChoice === false && questionsAsked === 0 && questionState === false && showAnswer === false && convoState == 3 && gameState == 4 && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (fateChoice === false && questionsAsked === 0 && questionState === false && showAnswer === false && convoState == 3 && gameState == 4 && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         convoState = 4;
         questionState = true;
@@ -300,7 +289,7 @@ function clickEvent()
     }
 
     //Back button on answer display
-    else if (questionsAsked < 3 && questionState === false && showAnswer === true && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (questionsAsked < 3 && questionState === false && showAnswer === true && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         showAnswer = false;
         questionState = true;
@@ -308,7 +297,7 @@ function clickEvent()
     }
 
     //Back button if three questions have been asked
-    else if (questionsAsked === 3 && questionState === false && showAnswer === true && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (questionsAsked === 3 && questionState === false && showAnswer === true && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         speakerDisplay = false;
         showAnswer = false;
@@ -319,7 +308,7 @@ function clickEvent()
     }
 
     //Number 1 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 6].asked === "false" && mouseX >= buttonPos[4].xClickStart && mouseX <= buttonPos[4].xClickEnd && mouseY >= buttonPos[4].yClickStart && mouseY <= buttonPos[4].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 6].asked === "false" && mouseX >= buttonPos[4].xStart && mouseX <= buttonPos[4].xEnd && mouseY >= buttonPos[4].yStart && mouseY <= buttonPos[4].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -330,7 +319,7 @@ function clickEvent()
     }
 
     //Number 2 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 5].asked === "false" && mouseX >= buttonPos[5].xClickStart && mouseX <= buttonPos[5].xClickEnd && mouseY >= buttonPos[5].yClickStart && mouseY <= buttonPos[5].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 5].asked === "false" && mouseX >= buttonPos[5].xStart && mouseX <= buttonPos[5].xEnd && mouseY >= buttonPos[5].yStart && mouseY <= buttonPos[5].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -341,7 +330,7 @@ function clickEvent()
     }
 
     //Number 3 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 4].asked === "false" && mouseX >= buttonPos[6].xClickStart && mouseX <= buttonPos[6].xClickEnd && mouseY >= buttonPos[6].yClickStart && mouseY <= buttonPos[6].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 4].asked === "false" && mouseX >= buttonPos[6].xStart && mouseX <= buttonPos[6].xEnd && mouseY >= buttonPos[6].yStart && mouseY <= buttonPos[6].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -352,7 +341,7 @@ function clickEvent()
     }
 
     //Number 4 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 3].asked === "false" && mouseX >= buttonPos[7].xClickStart && mouseX <= buttonPos[7].xClickEnd && mouseY >= buttonPos[7].yClickStart && mouseY <= buttonPos[7].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 3].asked === "false" && mouseX >= buttonPos[7].xStart && mouseX <= buttonPos[7].xEnd && mouseY >= buttonPos[7].yStart && mouseY <= buttonPos[7].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -363,7 +352,7 @@ function clickEvent()
     }
 
     //Number 5 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 2].asked === "false" && mouseX >= buttonPos[8].xClickStart && mouseX <= buttonPos[8].xClickEnd && mouseY >= buttonPos[8].yClickStart && mouseY <= buttonPos[8].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 2].asked === "false" && mouseX >= buttonPos[8].xStart && mouseX <= buttonPos[8].xEnd && mouseY >= buttonPos[8].yStart && mouseY <= buttonPos[8].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -374,7 +363,7 @@ function clickEvent()
     }
 
     //Number 6 button for questions
-    else if (questionState === true && answers[(questionSet * 6) - 1].asked === "false" && mouseX >= buttonPos[9].xClickStart && mouseX <= buttonPos[9].xClickEnd && mouseY >= buttonPos[9].yClickStart && mouseY <= buttonPos[9].yClickEnd)
+    else if (questionState === true && answers[(questionSet * 6) - 1].asked === "false" && mouseX >= buttonPos[9].xStart && mouseX <= buttonPos[9].xEnd && mouseY >= buttonPos[9].yStart && mouseY <= buttonPos[9].yEnd)
     {
         questionsAsked++;
         showAnswer = true;
@@ -385,7 +374,7 @@ function clickEvent()
     }
 
     //Forward button to fate choice
-    else if (questionsAsked === 3 && questionState === false && showAnswer === false && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd)
+    else if (questionsAsked === 3 && questionState === false && showAnswer === false && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd)
     {
         questionsAsked = 0;
         fwArrowVis = false;
@@ -393,7 +382,7 @@ function clickEvent()
     }
 
     //Kill button
-    else if (fateChoice === true && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (fateChoice === true && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         fateChoice = false;
         secondChance = true;
@@ -401,7 +390,7 @@ function clickEvent()
     }
 
     //Spare button
-    else if (fateChoice === true && mouseX >= buttonPos[11].xClickStart && mouseX <= buttonPos[11].xClickEnd && mouseY >= buttonPos[11].yClickStart && mouseY <= buttonPos[11].yClickEnd)
+    else if (fateChoice === true && mouseX >= buttonPos[11].xStart && mouseX <= buttonPos[11].xEnd && mouseY >= buttonPos[11].yStart && mouseY <= buttonPos[11].yEnd)
     {
         fateChoice = false;
         secondChance = true;
@@ -409,7 +398,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for kill at first choice
-    else if (secondChance === true && confirmKill === true && gameState == 4 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === true && gameState == 4 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -419,7 +408,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for spare at first choice
-    else if (secondChance === true && confirmKill === false && gameState == 4 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === false && gameState == 4 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -428,7 +417,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for kill at second choice
-    else if (secondChance === true && confirmKill === true && gameState == 5 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === true && gameState == 5 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -438,7 +427,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for spare at second choice
-    else if (secondChance === true && confirmKill === false && gameState == 5 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === false && gameState == 5 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -447,7 +436,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for kill at third choice
-    else if (secondChance === true && confirmKill === true && gameState == 6 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === true && gameState == 6 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -457,7 +446,7 @@ function clickEvent()
     }
 
     //Second Chance Yes button for spare at third choice
-    else if (secondChance === true && confirmKill === false && gameState == 6 && mouseX >= buttonPos[10].xClickStart && mouseX <= buttonPos[10].xClickEnd && mouseY >= buttonPos[10].yClickStart && mouseY <= buttonPos[10].yClickEnd)
+    else if (secondChance === true && confirmKill === false && gameState == 6 && mouseX >= buttonPos[10].xStart && mouseX <= buttonPos[10].xEnd && mouseY >= buttonPos[10].yStart && mouseY <= buttonPos[10].yEnd)
     {
         speakerDisplayCheck();
         secondChance = false;
@@ -466,7 +455,7 @@ function clickEvent()
     }
 
     //Second Chance No button
-    else if (secondChance === true && mouseX >= buttonPos[11].xClickStart && mouseX <= buttonPos[11].xClickEnd && mouseY >= buttonPos[11].yClickStart && mouseY <= buttonPos[11].yClickEnd)
+    else if (secondChance === true && mouseX >= buttonPos[11].xStart && mouseX <= buttonPos[11].xEnd && mouseY >= buttonPos[11].yStart && mouseY <= buttonPos[11].yEnd)
     {
         fateChoice = true;
         secondChance = false;
@@ -474,7 +463,7 @@ function clickEvent()
     }
 
     //Arrow button to advance conversations
-    else if (fwArrowVis === true && mouseX >= buttonPos[3].xClickStart && mouseX <= buttonPos[3].xClickEnd && mouseY >= buttonPos[3].yClickStart && mouseY <= buttonPos[3].yClickEnd) 
+    else if (fwArrowVis === true && mouseX >= buttonPos[3].xStart && mouseX <= buttonPos[3].xEnd && mouseY >= buttonPos[3].yStart && mouseY <= buttonPos[3].yEnd) 
     {
         convoState++;
         speakerDisplayCheck();

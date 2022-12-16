@@ -8,6 +8,12 @@ canvas.style.marginLeft = "auto";
 canvas.style.marginRight = "auto";
 canvas.style.border = "3px solid black";
 
+var canvasCenterX = canvas.width / 2;
+var canvasCenterY = canvas.height / 2;
+
+var menuButtonWidth = 300;
+var menuButtonHeight = 100;
+
 //Variable for tracking multiple state of the game
 //Full description of each variable is available above function clickEvent in the clickListeners script
 var gameState = 0;
@@ -201,20 +207,29 @@ var answers = Object.freeze([
     { "answer": "\"He murdered one of our associates in cold blood.\"", "asked": "false"},
     { "answer": "\"Government Agent.\"", "asked": "false"},
     { "answer": "\"Define real.\"", "asked": "false"},
-    { "answer": "\"We will make a decision at the conclusion of this test.\"", "asked": "false"}]);
+    { "answer": "\"We will make a decision at the conclusion of this test.\"", "asked": "false" }]);
+
+function findXPointOnCanvas(mouseX)
+{
+    return mouseX - canvas.getBoundingClientRect().left;
+}
+function findYPointOnCanvas(mouseY)
+{
+    return mouseY - canvas.getBoundingClientRect().top;
+}
 
 //Object array for button position variables
 // 0 = Start Button & Restart Button, 1 = Credits Button, 2 = Back Button, 3 = Forward Arrow, 4-9 = Numbered box buttons, 10-11 = Kill and Spare buttons
 var buttonPos = Object.freeze([
-    { "xStart": 650, "yStart": 500, "xClickStart": 818, "xClickEnd": 1118, "yClickStart": 510, "yClickEnd": 610 },
-    { "xStart": 650, "yStart": 700, "xClickStart": 818, "xClickEnd": 1118, "yClickStart": 710, "yClickEnd": 810 },
-    { "xStart": 650, "yStart": 700, "xClickStart": 818, "xClickEnd": 1118, "yClickStart": 710, "yClickEnd": 810 },
-    { "xStart": 1450, "yStart": 750, "xClickStart": 1618, "xClickEnd": 1718, "yClickStart": 760, "yClickEnd": 860 },
-    { "xStart": 1300, "yStart": 715, "xClickStart": 1468, "xClickEnd": 1543, "yClickStart": 730, "yClickEnd": 805 },
-    { "xStart": 1400, "yStart": 715, "xClickStart": 1568, "xClickEnd": 1643, "yClickStart": 730, "yClickEnd": 805 },
-    { "xStart": 1500, "yStart": 715, "xClickStart": 1668, "xClickEnd": 1743, "yClickStart": 730, "yClickEnd": 805 },
-    { "xStart": 1300, "yStart": 815, "xClickStart": 1468, "xClickEnd": 1543, "yClickStart": 830, "yClickEnd": 905 },
-    { "xStart": 1400, "yStart": 815, "xClickStart": 1568, "xClickEnd": 1643, "yClickStart": 830, "yClickEnd": 905 },
-    { "xStart": 1500, "yStart": 815, "xClickStart": 1668, "xClickEnd": 1743, "yClickStart": 830, "yClickEnd": 905 },
-    { "xStart": 400, "yStart": 775, "xClickStart": 570, "xClickEnd": 790, "yClickStart": 785, "yClickEnd": 860 },
-    { "xStart": 900, "yStart": 775, "xClickStart": 1070, "xClickEnd": 1290, "yClickStart": 785, "yClickEnd": 860 }]);
+    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 500, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 500 + menuButtonHeight },
+    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 700, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 700 + menuButtonHeight },
+    { "xStart": canvasCenterX - (menuButtonWidth / 2), "yStart": 700, "xEnd": canvasCenterX + (menuButtonWidth / 2), "yEnd": 700 + menuButtonHeight },
+    { "xStart": 1450, "yStart": 750, "xEnd": 1718, "yEnd": 860 },
+    { "xStart": 1300, "yStart": 715, "xEnd": 1543, "yEnd": 805 },
+    { "xStart": 1400, "yStart": 715, "xEnd": 1643, "yEnd": 805 },
+    { "xStart": 1500, "yStart": 715, "xEnd": 1743, "yEnd": 805 },
+    { "xStart": 1300, "yStart": 815, "xEnd": 1543, "yEnd": 905 },
+    { "xStart": 1400, "yStart": 815, "xEnd": 1643, "yEnd": 905 },
+    { "xStart": 1500, "yStart": 815, "xEnd": 1743, "yEnd": 905 },
+    { "xStart": 400, "yStart": 775, "xEnd": 790, "yEnd": 860 },
+    { "xStart": 900, "yStart": 775, "xEnd": 1290, "yEnd": 860 }]);
